@@ -1,0 +1,74 @@
+---
+title: "Machine Learning"
+author: "Virginia Rossow"
+date: "2024-10-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Air Quality
+
+```{r imports}
+
+library(tidyverse)
+library(visdat)
+library(janitor)
+
+air_df <- airquality
+
+```
+
+```{r clean}
+
+air_tbl <- airquality %>%
+  as_tibble() %>%
+  clean_names()
+
+```
+
+```{r overview}
+
+vis_miss(air_tbl)
+
+head(air_tbl)
+
+```
+
+```{r visualizations without missing values}
+
+
+ggplot(air_tbl, aes(x = ozone)) +
+  geom_histogram(binwidth = 10, fill = "lightpink", color = "grey100") +
+  theme_bw() +
+  ggtitle("Histogram of Ozone (Binwidth = 10)")
+
+ggplot(air_tbl, aes(x = solar_r)) +
+  geom_histogram(binwidth = 10, fill = "plum", color = "grey100") +
+  theme_bw() +
+  ggtitle("Histogram of Solar (Binwidth = 10)")
+
+ggplot(air_tbl, aes(x = wind)) +
+  geom_histogram(binwidth = 1, fill = "cyan3", color = "grey100") +
+  theme_bw() +
+  ggtitle("Histogram of Wind (Binwidth = 1)")
+
+ggplot(air_tbl, aes(x = temp)) +
+  geom_histogram(binwidth = 3, fill = "slategray2", color = "grey100") +
+  theme_bw() +
+  ggtitle("Histogram of Temperature (Binwidth = 3)")
+
+ggplot(air_tbl, aes(x = month)) +
+  geom_histogram(binwidth = 1, fill = "aquamarine3", color = "grey100") +
+  theme_bw() +
+  ggtitle("Histogram of Month (Binwidth = 1)")
+
+ggplot(air_tbl, aes(x = day)) +
+  geom_histogram(binwidth = 1, fill = "orchid4", color = "grey100") +
+  theme_bw() +
+  ggtitle("Histogram of Day (Binwidth = 1)")
+
+
+```
