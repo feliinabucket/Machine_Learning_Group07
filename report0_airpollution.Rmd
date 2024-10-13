@@ -16,6 +16,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(visdat)
 library(janitor)
+library(grid)
+library(gridExtra)
 
 air_df <- airquality
 
@@ -40,35 +42,45 @@ head(air_tbl)
 ```{r visualizations without missing values}
 
 
-ggplot(air_tbl, aes(x = ozone)) +
+p1 <- ggplot(air_tbl, aes(x = ozone)) +
   geom_histogram(binwidth = 10, fill = "lightpink", color = "grey100") +
   theme_bw() +
-  ggtitle("Histogram of Ozone (Binwidth = 10)")
+  ggtitle("Histogram of Ozone (Binwidth = 10)") +
+  theme(plot.title = element_text(size = 11))
 
-ggplot(air_tbl, aes(x = solar_r)) +
+p2 <- ggplot(air_tbl, aes(x = solar_r)) +
   geom_histogram(binwidth = 10, fill = "plum", color = "grey100") +
   theme_bw() +
-  ggtitle("Histogram of Solar (Binwidth = 10)")
+  ggtitle("Histogram of Solar (Binwidth = 10)") +
+  theme(plot.title = element_text(size = 11))
 
-ggplot(air_tbl, aes(x = wind)) +
+p3 <- ggplot(air_tbl, aes(x = wind)) +
   geom_histogram(binwidth = 1, fill = "cyan3", color = "grey100") +
   theme_bw() +
-  ggtitle("Histogram of Wind (Binwidth = 1)")
+  ggtitle("Histogram of Wind (Binwidth = 1)") +
+  theme(plot.title = element_text(size = 11))
 
-ggplot(air_tbl, aes(x = temp)) +
+p4 <- ggplot(air_tbl, aes(x = temp)) +
   geom_histogram(binwidth = 3, fill = "slategray2", color = "grey100") +
   theme_bw() +
-  ggtitle("Histogram of Temperature (Binwidth = 3)")
+  ggtitle("Histogram of Temperature (Binwidth = 3)") +
+  theme(plot.title = element_text(size = 11))
 
-ggplot(air_tbl, aes(x = month)) +
+p5 <- ggplot(air_tbl, aes(x = month)) +
   geom_histogram(binwidth = 1, fill = "aquamarine3", color = "grey100") +
   theme_bw() +
-  ggtitle("Histogram of Month (Binwidth = 1)")
+  ggtitle("Histogram of Month (Binwidth = 1)") +
+  theme(plot.title = element_text(size = 11))
 
-ggplot(air_tbl, aes(x = day)) +
+p6 <- ggplot(air_tbl, aes(x = day)) +
   geom_histogram(binwidth = 1, fill = "orchid4", color = "grey100") +
   theme_bw() +
-  ggtitle("Histogram of Day (Binwidth = 1)")
+  ggtitle("Histogram of Day (Binwidth = 1)") +
+  theme(plot.title = element_text(size = 11))
+
+
+
+grid.arrange(p1, p2, p3, p4, p5, p6, ncol=2)
 
 
 ```
